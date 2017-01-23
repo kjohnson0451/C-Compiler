@@ -1,0 +1,12 @@
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Main files (these are for debugging)
+main
+main.c
+
+# Makefile (This should be unignored soon)
+Makefile
