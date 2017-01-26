@@ -6,6 +6,8 @@ char *yytext  = ""; /* Lexeme (not '\0' terminated)   */
 int   yyleng   = 0; /* Lexeme length.                 */
 int   yylineno = 0; /* Input line number              */
 
+static int Lookahead = -1; /* Lookahead token */
+
 int lex() {
   static char input_buffer[128];
   char *current;
@@ -64,4 +66,20 @@ int lex() {
       }
     }
   }
+}
+
+
+int match( int token ) {
+  /* Return true if "token" matches the current lookahead symbol. */
+
+  if( Lookahead == -1 ) {
+    Lookahead = lex();
+  }
+
+  return token == Lookahead;
+}
+
+void advance() {
+  /* Advance the lookahead to the next input symbol. */
+  Lookahead = lex();
 }
